@@ -118,20 +118,17 @@ int main()
         cout << "Customer count not found." << endl;
     }
 
-    // Demonstrate fill() and swap()
+    // Demonstrate array fill() and swap()
     cout << "\nArray Fill and Swap Demonstration" << endl;
 
-    // Create copies to preserve the original customer data
     array<int, SIZE> closedDays = customers;
     array<int, SIZE> backupCustomers = customers;
 
-    // Simulate zero customers during a closure
     closedDays.fill(0);
 
     cout << "Customers during closure: "
          << closedDays.front() << endl;
 
-    // Restore the customer data from the backup
     closedDays.swap(backupCustomers);
 
     cout << "Customers after restoring backup: "
@@ -256,6 +253,29 @@ int main()
     {
         cout << "Customer count not found." << endl;
     }
+
+    // Demonstrate vector fill and swap
+    cout << "\nVector Fill and Swap Demonstration" << endl;
+
+    vector<int> closedVector = vectorCustomers;
+    vector<int> backupVector = vectorCustomers;
+
+    // Vector has no .fill() member; use the fill() algorithm
+    fill(closedVector.begin(), closedVector.end(), 0);
+
+    cout << "Customers during closure: "
+         << closedVector.front() << endl;
+
+    // Restore the customer data from the backup
+    closedVector.swap(backupVector);
+
+    cout << "Customers after restoring backup: "
+         << closedVector.front() << endl;
+
+    cout << "Total customers after restoration: "
+         << accumulate(closedVector.begin(),
+                       closedVector.end(), 0)
+         << endl;
 
     return 0;
 }
