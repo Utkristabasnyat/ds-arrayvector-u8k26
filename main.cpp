@@ -116,5 +116,28 @@ int main()
         cout << "Customer count not found." << endl;
     }
 
+    // Demonstrate fill() and swap()
+    cout << "\nArray Fill and Swap Demonstration" << endl;
+
+    // Create copies to preserve the original customer data
+    array<int, SIZE> closedDays = customers;
+    array<int, SIZE> backupCustomers = customers;
+
+    // Simulate zero customers during a closure
+    closedDays.fill(0);
+
+    cout << "Customers during closure: "
+         << closedDays.front() << endl;
+
+    // Restore the customer data from the backup
+    closedDays.swap(backupCustomers);
+
+    cout << "Customers after restoring backup: "
+         << closedDays.front() << endl;
+
+    cout << "Total customers after restoration: "
+         << accumulate(closedDays.begin(), closedDays.end(), 0)
+         << endl;
+
     return 0;
 }
