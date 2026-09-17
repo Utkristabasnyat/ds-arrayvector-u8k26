@@ -38,5 +38,25 @@ int main()
              << customers.at(i) << " customers" << endl;
     }
 
+    // Demonstrating std::array member functions
+    cout << "\nArray Information" << endl;
+
+    cout << "Array size: " << customers.size() << endl;
+
+    cout << "First day: " << customers.front() << endl;
+
+    cout << "Last day: " << customers.back() << endl;
+
+    cout << "Day 3: " << customers.at(2) << endl;
+
+    cout << "Is array empty? ";
+    if (customers.empty())
+        cout << "Yes" << endl;
+    else
+        cout << "No" << endl;
+
+    cout << "Array data address: "
+         << customers.data() << endl;
+
     return 0;
 }
