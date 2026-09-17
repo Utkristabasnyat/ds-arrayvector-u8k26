@@ -194,5 +194,68 @@ int main()
     cout << "Vector data address: "
          << vectorCustomers.data() << endl;
 
+    // Calculate vector customer statistics
+    cout << "\nVector Customer Statistics" << endl;
+
+    cout << "Maximum customers: "
+         << *max_element(vectorCustomers.begin(),
+                         vectorCustomers.end())
+         << endl;
+
+    cout << "Minimum customers: "
+         << *min_element(vectorCustomers.begin(),
+                         vectorCustomers.end())
+         << endl;
+
+    cout << "Total customers: "
+         << accumulate(vectorCustomers.begin(),
+                       vectorCustomers.end(), 0)
+         << endl;
+
+    // Make a copy to preserve the original vector data
+    vector<int> sortedVector = vectorCustomers;
+
+    // Sort vector in ascending order
+    sort(sortedVector.begin(), sortedVector.end());
+
+    cout << "\nVector sorted in ascending order:" << endl;
+
+    for (int value : sortedVector)
+    {
+        cout << value << " ";
+    }
+    cout << endl;
+
+    // Sort vector in descending order
+    sort(sortedVector.rbegin(), sortedVector.rend());
+
+    cout << "\nVector sorted in descending order:" << endl;
+
+    for (int value : sortedVector)
+    {
+        cout << value << " ";
+    }
+    cout << endl;
+
+    // Search the original vector for a customer count
+    vector<int>::iterator vectorIt;
+
+    vectorIt = find(vectorCustomers.begin(),
+                    vectorCustomers.end(), target);
+
+    cout << "\nVector searching for "
+         << target << " customers:" << endl;
+
+    if (vectorIt != vectorCustomers.end())
+    {
+        cout << "Found on day "
+             << vectorIt - vectorCustomers.begin() + 1
+             << endl;
+    }
+    else
+    {
+        cout << "Customer count not found." << endl;
+    }
+
     return 0;
 }
