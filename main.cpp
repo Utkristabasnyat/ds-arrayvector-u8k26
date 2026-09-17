@@ -2,6 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <array>
+#include <algorithm>
+#include <numeric>
 using namespace std;
 
 const int SIZE = 30;
@@ -38,15 +40,12 @@ int main()
              << customers.at(i) << " customers" << endl;
     }
 
-    // Demonstrating std::array member functions
+    // Demonstrate basic std::array member functions
     cout << "\nArray Information" << endl;
 
     cout << "Array size: " << customers.size() << endl;
-
     cout << "First day: " << customers.front() << endl;
-
     cout << "Last day: " << customers.back() << endl;
-
     cout << "Day 3: " << customers.at(2) << endl;
 
     cout << "Is array empty? ";
@@ -57,6 +56,65 @@ int main()
 
     cout << "Array data address: "
          << customers.data() << endl;
+
+    // Calculate customer statistics
+    cout << "\nCustomer Statistics" << endl;
+
+    cout << "Maximum customers: "
+         << *max_element(customers.begin(), customers.end())
+         << endl;
+
+    cout << "Minimum customers: "
+         << *min_element(customers.begin(), customers.end())
+         << endl;
+
+    cout << "Total customers: "
+         << accumulate(customers.begin(), customers.end(), 0)
+         << endl;
+
+    // Make a copy to preserve the original customer data
+    array<int, SIZE> sortedCustomers = customers;
+
+    // Sort in ascending order
+    sort(sortedCustomers.begin(), sortedCustomers.end());
+
+    cout << "\nCustomers sorted in ascending order:" << endl;
+
+    for (int value : sortedCustomers)
+    {
+        cout << value << " ";
+    }
+    cout << endl;
+
+    // Sort in descending order
+    sort(sortedCustomers.rbegin(), sortedCustomers.rend());
+
+    cout << "\nCustomers sorted in descending order:" << endl;
+
+    for (int value : sortedCustomers)
+    {
+        cout << value << " ";
+    }
+    cout << endl;
+
+    // Search for a customer count
+    int target = 85;
+
+    array<int, SIZE>::iterator it;
+
+    it = find(customers.begin(), customers.end(), target);
+
+    cout << "\nSearching for " << target << " customers:" << endl;
+
+    if (it != customers.end())
+    {
+        cout << "Found on day "
+             << it - customers.begin() + 1 << endl;
+    }
+    else
+    {
+        cout << "Customer count not found." << endl;
+    }
 
     return 0;
 }
