@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <array>
+#include <vector>
 #include <algorithm>
 #include <numeric>
 using namespace std;
@@ -10,6 +11,7 @@ const int SIZE = 30;
 
 int main()
 {
+    // PART 1: STD::ARRAY
     array<int, SIZE> customers;
 
     ifstream inputFile("customers.txt");
@@ -138,6 +140,42 @@ int main()
     cout << "Total customers after restoration: "
          << accumulate(closedDays.begin(), closedDays.end(), 0)
          << endl;
+
+    // PART 2: STD::VECTOR
+    vector<int> vectorCustomers;
+
+    // Open the same external data file again
+    ifstream vectorFile("customers.txt");
+
+    if (!vectorFile)
+    {
+        cout << "Error opening customers.txt for vector." << endl;
+        return 1;
+    }
+
+    for (int i = 0; i < SIZE; i++)
+    {
+        int count;
+
+        if (!(vectorFile >> count))
+        {
+            cout << "Error reading vector customer data." << endl;
+            return 1;
+        }
+
+        vectorCustomers.push_back(count);
+    }
+
+    vectorFile.close();
+
+    cout << "\nVector Customer Tracker" << endl;
+    cout << "Customer data for 30 days:" << endl;
+
+    for (int i = 0; i < SIZE; i++)
+    {
+        cout << "Day " << i + 1 << ": "
+             << vectorCustomers.at(i) << " customers" << endl;
+    }
 
     return 0;
 }
