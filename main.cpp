@@ -177,5 +177,22 @@ int main()
              << vectorCustomers.at(i) << " customers" << endl;
     }
 
+    // Demonstrate basic std::vector member functions
+    cout << "\nVector Information" << endl;
+
+    cout << "Vector size: " << vectorCustomers.size() << endl;
+    cout << "First day: " << vectorCustomers.front() << endl;
+    cout << "Last day: " << vectorCustomers.back() << endl;
+    cout << "Day 3: " << vectorCustomers.at(2) << endl;
+
+    cout << "Is vector empty? ";
+    if (vectorCustomers.empty())
+        cout << "Yes" << endl;
+    else
+        cout << "No" << endl;
+
+    cout << "Vector data address: "
+         << vectorCustomers.data() << endl;
+
     return 0;
 }
